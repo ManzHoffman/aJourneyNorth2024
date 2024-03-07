@@ -1,12 +1,6 @@
 // A Journey North - TITLE 
 
 
-// DECLARING MENU VARIABLES
-var level = 0;
-
-
-
-
 // Create game menu scene
 scene("menu", () => {
      // minimal setup
@@ -53,7 +47,6 @@ scene("menu", () => {
         pos( vec2(-200, -110)),
       
     ])
-
   
     let backMusic = play("menuBackground", { loop: true, });
     // Add background
@@ -64,15 +57,7 @@ scene("menu", () => {
 
 
     ]);*/
-     add([
-        text("Score: 0",{
-          font: "arctic",
 
-          
-        }),
-        pos(24, 24),
-        { value: 0 },
-      ])
       const optionButton = add([
         text(menu.options,{
           size:78,
@@ -104,7 +89,7 @@ scene("menu", () => {
       playButton.onClick(() => {
 
         backMusic.stop("menuBackground")
-        go("intro")
+        go("intro",1)
 
         })
       playButton.onHover(() => { 
@@ -120,7 +105,7 @@ scene("menu", () => {
      optionButton.onHover(() => { 
       
       changeColor(optionButton,icyColorDarker) 
-      play("popMenu", { loop: false, });
+      play("popMenu", { loop: false,volume: 0.4 });
     
     
     } )
@@ -131,19 +116,6 @@ scene("menu", () => {
 
 });
 
-
-
-//loadScreen(menu)
-//loadScreen(background)
-
-function loadScreen(name)
-{
-    
-const script = document.createElement('script');
-script.src =  name;
-//script.async = true; // Optional: Make sure the script is loaded asynchronously
-document.body.appendChild(script)
-}
 
 
 go("menu")
