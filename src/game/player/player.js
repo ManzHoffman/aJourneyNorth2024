@@ -16,7 +16,7 @@ const player = add([
 const player = add([
 	sprite("player"),
 	pos(width()/2,height()/2-150),
-    scale(0.5),
+    scale(2),
 	anchor("center"),
 	area(),
 	body(),

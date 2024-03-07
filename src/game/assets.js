@@ -17,17 +17,17 @@ loadFont("marykate", "./src/game/assets/fonts/marykate.ttf")
 
 // PLAYER
 
-loadSprite("player","./src/game/assets/elements/player/reindeer.png", {
+loadSprite("player","./src/game/assets/elements/player/reindeer_idle.png", {
 	// The image contains 9 frames layed out horizontally, slice it into individual frames
 	sliceX: 5,
-    //sliceY: 4,
+    sliceY: 4,
 	// Define animations
     
 	anims: {
 		"idle": {
 			// Starts from frame 0, ends at frame 3
 			from: 0,
-			to: 4,
+			to: 19,
 			// Frame per second
 			speed: 5,
 			loop: true,

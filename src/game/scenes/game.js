@@ -1,10 +1,11 @@
 scene("game", (level) => {
 
     loadSound("level1BackgroundMusic", "./src/game/assets/sounds/level1_music.wav");
- 
+     initPlayer(24,25);
 
 switch (level) {
     case 1:
+    
 
    /*
     add([
@@ -23,15 +24,14 @@ switch (level) {
         
       ])
   
-      displayLevelOne(-100,200);*/
-    
+      displayLevelOne(-100,200);
+    */
 
         break;
 
     default:
         break;
 }
-initPlayer(24,25);
 
 displayLives();
 /*
