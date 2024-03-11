@@ -17,32 +17,58 @@ loadFont("marykate", "./src/game/assets/fonts/marykate.ttf")
 
 // PLAYER
 
-loadSprite("player","./src/game/assets/elements/player/reindeer_idle.png", {
+loadSprite("playerIdle","./src/game/assets/elements/player/basicReindeer/reindeer_idle.png", {
 	// The image contains 9 frames layed out horizontally, slice it into individual frames
 	sliceX: 5,
     sliceY: 4,
 	// Define animations
-    
 	anims: {
 		"idle": {
 			// Starts from frame 0, ends at frame 3
 			from: 0,
 			to: 19,
 			// Frame per second
-			speed: 5,
+			speed: FRAME_SPEED,
 			loop: true,
 		},
-        /*
-		"run": {
-			from: 4,
-			to: 7,
-			speed: 10,
-			loop: true,
-		},*/
-		// This animation only has 1 frame
-		//"jump": 8,
+
 	},
 })
+loadSprite("playerWalk","./src/game/assets/elements/player/basicReindeer/reindeer_walking.png", {
+	// The image contains 9 frames layed out horizontally, slice it into individual frames
+	sliceX: 5,
+    sliceY: 3,
+	// Define animations
+	anims: {
+		"walk": {
+			// Starts from frame 0, ends at frame 3
+			from: 0,
+			to: 14,
+			// Frame per second
+			speed: FRAME_SPEED,
+			loop: true,
+		},
+
+	},
+})
+loadSprite("playerJump","./src/game/assets/elements/player/basicReindeer/reindeer_jump.png", {
+	// The image contains 9 frames layed out horizontally, slice it into individual frames
+	sliceX: 5,
+    sliceY: 3,
+	// Define animations
+	anims: {
+		"jump": {
+			// Starts from frame 0, ends at frame 3
+			from: 0,
+			to: 14,
+			// Frame per second
+			speed: FRAME_SPEED,
+			loop: false,
+		},
+
+	},
+})
+
 
 const bgImage =  loadSprite("background", "./src/game/assets/elements/landscape/01/layers/l1-background.png");
 const bgImageDay =  loadSprite("backgroundDay", "./src/game/assets/elements/landscape/04/layers/l1-backgrounds.png");
@@ -73,7 +99,7 @@ const map =  loadSprite("map", "./src/game/assets/elements/obj/map.png",{
 const starNormal =  loadSprite("starNormal", "./src/game/assets/elements/obj/star.png")
 const starLocked =  loadSprite("starLocked", "./src/game/assets/elements/obj/star_lock.png")
 const pinPoint =  loadSprite("pinPoint", "./src/game/assets/elements/obj/pinpoint.png");
-const iceBlock =  loadSprite("iceBlock", "./src/game/assets/elements/landscape/04/layers/l8-block.png");
+const iceBlock =  loadSprite("iceBlock", "./src/game/assets/elements/landscape/blocks/iceBlock1.png");
 
 
 

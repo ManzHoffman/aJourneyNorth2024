@@ -47,7 +47,20 @@ scene("menu", () => {
         pos( vec2(-200, -110)),
       
     ])
-  
+
+    const reindeerAlone = add([
+      sprite("playerIdle"),
+      pos(300,800),
+      scale(1),
+      anchor("center"),
+      body(),
+      area(),
+      "reindeer",
+      
+    ])
+
+    reindeerAlone.flipX = true;
+    reindeerAlone.play(ANIM_IDLE);
     let backMusic = play("menuBackground", { loop: true, });
     // Add background
     /*

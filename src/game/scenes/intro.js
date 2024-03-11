@@ -4,7 +4,7 @@
     switch (level) {
         case 1:
 
-        var introMusic = play("firstIntro", { loop: true,volume: 0.5 });
+        var introMusic = play("firstIntro", { loop: true,volume: 1});
         introMusic.mu
        
               
@@ -26,7 +26,7 @@
  
           add([
             sprite("map"),
-            scale(0.2),
+            scale(0.15),
             anchor("center"),
             pos( vec2(width()/2,height()/2+200)),
             
@@ -41,7 +41,7 @@
           addText(level1.title,68,icyWhite,"arctic","center",width()/2,height()/2-350)
           addText(level1.localisation,48,icyWhite,"arctic","center",width()/2,height()/2-200)
          
-          addText(level1.description,30,icyWhite,"marykate","center",750,450)
+          addText(level1.description,30,icyWhite,"marykate","center",680,450)
 
     
             

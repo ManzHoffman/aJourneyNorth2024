@@ -1,16 +1,19 @@
 scene("game", (level) => {
 
     loadSound("level1BackgroundMusic", "./src/game/assets/sounds/level1_music.wav");
-     initPlayer(24,25);
 
+// define gravity
+setGravity(GRAVITY_AMOUNT)
+
+    
 switch (level) {
     case 1:
     
+   
 
-   /*
     add([
         sprite("backgroundDay"),
-      
+        fixed()
         
       ])
       add([
@@ -20,12 +23,21 @@ switch (level) {
       ])
       add([
         sprite("mountainsDay"),
-      
+        fixed()
         
       ])
-  
-      displayLevelOne(-100,200);
-    */
+    
+    var level = displayLevelOne(100, -100 );
+   
+    const player = level.get("player")[0]
+   
+    initPlayer(110,800,player);
+    
+    //player.play(ANIM_IDLE) 
+
+    //const player = level.get("player")[0]
+    //
+    
 
         break;
 
@@ -34,6 +46,12 @@ switch (level) {
 }
 
 displayLives();
+
+
+
+
+
+})
 /*
 // jump when player presses "space" key
 onKeyPress("space", () => {
@@ -41,9 +59,6 @@ onKeyPress("space", () => {
     player.jump()
 })
 
-
-// define gravity
-setGravity(2400)
 
 // add character to screen, from a list of components
 const player = add([
@@ -54,9 +69,3 @@ const player = add([
 ])
 
 */
-
-
-
-
-
-})
