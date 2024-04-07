@@ -5,7 +5,7 @@
         case 1:
 
         var introMusic = play("firstIntro", { loop: true,volume: 1});
-        introMusic.mu
+        //introMusic.mu
        
               
           add([

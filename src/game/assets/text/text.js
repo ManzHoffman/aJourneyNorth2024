@@ -11,3 +11,8 @@ const level1 = {
                 "La glace autour d'eux fond plus rapidement que jamais,\nce qui rend difficile le fait de trouver de la nourriture.",
     start:"Appuyer sur ESPACE pour commencer",
 };
+const loose = {
+  title: "Appuyer sur ESPACE pour continuer",
+  dead:"Vous êtes mort !",
+
+};

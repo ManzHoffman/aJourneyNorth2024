@@ -16,11 +16,6 @@ scene("menu", () => {
       
     ])
     add([
-      sprite("mountainsFarAway"),
-    
-      
-    ])
-    add([
       sprite("mountains"),
     
       
@@ -39,14 +34,22 @@ scene("menu", () => {
 
     add([
       sprite("borealis"),
-        pos( vec2(-200, -100)),
+        pos( vec2(-200, -110)),
       
     ])
     add([
       sprite("borealisPurple"),
-        pos( vec2(-200, -110)),
+        pos( vec2(-200, -130)),
       
     ])
+
+
+    add([
+      sprite("title"),
+      scale(1),
+      pos(width()/2-240,height()/2-400),
+    ])
+
 
     const reindeerAlone = add([
       sprite("playerIdle"),
@@ -79,7 +82,7 @@ scene("menu", () => {
 
         }),
         anchor("center"),
-        pos(width()/2,height()/2-70),
+        pos(width()/2,height()/2+50),
         { value: 0 },
         area(),
       ])
@@ -93,7 +96,7 @@ scene("menu", () => {
 
         }),
         anchor("center"),
-        pos(width()/2,height()/2-160),
+        pos(width()/2,height()/2-50),
         { value: 0 },
         area(),
 

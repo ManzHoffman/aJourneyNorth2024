@@ -13,11 +13,14 @@ function addText(textMain,size,color,fontType,align, posx,posy) {
     
     
           { value: 0 },
-     
+          fixed(),
     
       ])
     
 }
+
+
+
 function displayLives() {
 
    add([
@@ -28,6 +31,7 @@ function displayLives() {
         }),
         pos(24, 24),
         { value: 0 },
+        fixed(),
       ])
 
 
@@ -38,6 +42,7 @@ for (let i = 0; i < displayLivesArray.length; i++) {
       sprite(displayLivesArray[i]),
         pos( vec2(100 + i*40, 24 )),
         scale(0.1),
+        fixed(),
     ])
 
 
@@ -50,3 +55,5 @@ for (let i = 0; i < displayLivesArray.length; i++) {
 
 
 }
+
+
