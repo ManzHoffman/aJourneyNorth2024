@@ -9,7 +9,7 @@ const SOUNDS = {
 	popMenu: "./src/game/assets/sounds/pop_menu.wav",
 	firstIntro: "./src/game/assets/sounds/intro_first.wav",
 	reindeer_walking: "./src/game/assets/sounds/reindeer_walking_short.mp3",
-	level1BackgroundMusic: "./src/game/assets/sounds/level1_music.wav",
+	windAmb: "./src/game/assets/sounds/level1_music.wav",
 	eat: "./src/game/assets/sounds/eat.wav",
 	dropping_snowball: "./src/game/assets/sounds/dropping_snowball.wav",
 	hit_by_snowball: "./src/game/assets/sounds/hit_by_snowball.wav",
@@ -18,6 +18,10 @@ const SOUNDS = {
 
 // LOAD SOUNDS
 loadGameElements(SOUNDS,"sound")
+let soundKeys = Object.keys(SOUNDS);
+
+let windAmbiance = play(soundKeys[4], { loop: true, paused: true});
+
 
 
 // FONTS
@@ -41,7 +45,25 @@ const centerOuter = "centerOuter"
 const leftInner = "leftInner"
 const rightInner = "rightInner"
 const centerInner = "centerInner"
-const seagullIdle = "seagullIdle"
+const seagullFly = "seagullFly"
+const sea = "sea"
+const sky = "sky"
+const icelongLeft = "icelongLeft"
+const icelongMiddle = "icelongMiddle"
+const icelongRight = "icelongRight"
+
+const sign = "sign"
+
+
+loadSprite(sea, "./src/game/assets/elements/landscape/arctic/sea_colour_strip.png")
+loadSprite(sky, "./src/game/assets/elements/landscape/arctic/sky_colour_strip.png")
+
+loadSprite("iceBlock", "./src/game/assets/elements/landscape/arctic/block1.png");
+loadSprite("iceBlock2", "./src/game/assets/elements/landscape/arctic/block2.png");
+loadSprite(icelongLeft, "./src/game/assets/elements/landscape/arctic/platform_edge_left_jagged.png");
+loadSprite(icelongRight, "./src/game/assets/elements/landscape/arctic/platform_edge_right_jagged.png");
+loadSprite(icelongMiddle, "./src/game/assets/elements/landscape/arctic/platform_short_repeating.png");
+loadSprite(sign, "./src/game/assets/elements/obj/sign.png");
 
 const SPRITES = {
 }
@@ -222,18 +244,17 @@ loadSprite("walrusDie","./src/game/assets/elements/enemy/walrus/walrusWhite/walr
 
 	},
 })
-loadSprite(seagullIdle,"./src/game/assets/elements/projectile/basic_weapon_player.png", {
-	// The image contains 9 frames layed out horizontally, slice it into individual frames
-	sliceX: 3,
-    sliceY: 2,
+loadSprite(seagullFly,"./src/game/assets/elements/enemy/seagull/seagull_fly.png", {
+	sliceX: 4,
+    sliceY: 3,
 	// Define animations
 	anims: {
-		"shot": {
-			// Starts from frame 0, ends at frame 3
+		"fly": {
+			// Starts from frame 0, ends at frame 9
 			from: 0,
-			to: 5,
+			to: 9,
 			// Frame per second
-			speed: 3 ,
+			speed: 5,
 			loop: true,
 		},
 
@@ -269,7 +290,7 @@ const map =  loadSprite("map", "./src/game/assets/elements/obj/map.png",{
 const starNormal =  loadSprite("starNormal", "./src/game/assets/elements/obj/star.png")
 const starLocked =  loadSprite("starLocked", "./src/game/assets/elements/obj/star_lock.png")
 const pinPoint =  loadSprite("pinPoint", "./src/game/assets/elements/obj/pinpoint.png");
-const iceBlock =  loadSprite("iceBlock", "./src/game/assets/elements/landscape/blocks/iceBlock1.png");
+
 loadSprite("plant", "./src/game/assets/elements/landscape/blocks/herb.png");
 
 const life =  loadSprite("life", "./src/game/assets/elements/obj/health_potion.png");

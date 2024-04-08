@@ -1,5 +1,5 @@
 kaboom({
-    width: 1280,
+    width: 1800,
     height: 1024,
     //font: "sans-serif",
     //canvas: document.querySelector("#mycanvas"),
@@ -29,6 +29,10 @@ const P_BULLET_SPEED = 800;
 const W_WHITE_HEALTH = 3;
 const W_WHITE_SHOT_FREQUENCY = 1.8;
 
+const S_HEALTH = 2;
+
+
+
 const ANIM_IDLE = "idle";
 const ANIM_WALK = "walk";
 const ANIM_JUMP = "jump";
@@ -36,6 +40,7 @@ const ANIM_DIE = "die";
 const ANIM_W_IDLE = "w_idle";
 const ANIM_W_ATTACK = "w_attack";
 const ANIM_W_DIE = "w_die";
+const ANIM_S_FLY = "fly";
 const ANIM_SNOWBALL = "fly";
 const ANIM_BASIC_WEAPON_P = "shot";
 
@@ -53,7 +58,7 @@ var P_SHOT_FREQUENCY = 400;
 // INITIALIZING GLOBAL VARIABLES
 
 var lives = 3;
-var currentLevel = 1;
+var currentLevel = 0;
 
 
 // States

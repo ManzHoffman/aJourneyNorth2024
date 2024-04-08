@@ -27,7 +27,7 @@ scene("menu", () => {
     ])
     add([
       sprite("ice"),
-    
+      fixed(),
       
     ])
  

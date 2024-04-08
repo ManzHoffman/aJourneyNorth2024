@@ -6,47 +6,30 @@ setGravity(GRAVITY_AMOUNT)
 P_HEALTH = MAX_HEALTH;
     
 switch (level) {
+    case 0:
+      var level = displayLevelZero(100, -600 );
+
+
+
+
+    break;
     case 1:
     
+
   
-    let level1 = play("level1BackgroundMusic", { loop: true, });
-
-
-    add([
-        sprite("backgroundDay"),
-        fixed()
-        
-      ])
-      add([
-        sprite("clouds"),
-        pos( vec2(-200, -110)),
-        fixed(),
-        
-      ])
-      add([
-        sprite("mountainsDay"),
-        fixed(),
-        
-      ])
-      add([
-        sprite("ice"),
-        fixed(),
-        
-      ])
-   
 
     
-    var level = displayLevelOne(100, -100 );
+    var level = displayLevelOne(100, -600 );
    
-    const player = level.get("player")[0]
+    const player2 = level.get("player")[0]
     //const enemy = level.get("walrusWhite")[0]
  
-    const enemies =  level.get("walrusWhite");
-    const numberOfWalrusWhiteElements = enemies.length;
+   // const enemies =  level.get("walrusWhite");
+    //const numberOfWalrusWhiteElements = enemies.length;
 
 
-    initPlayer(110,800,player);
-
+    initPlayer(110,800,player2);
+/*
     for (let i = 0; i < numberOfWalrusWhiteElements ; i++) {
     
       initWhiteWalrus(level.get("walrusWhite")[i],player,W_WHITE_SHOT_FREQUENCY)
@@ -55,7 +38,7 @@ switch (level) {
 
 
       console.log("ENEMIES " + numberOfWalrusWhiteElements);
-
+*/
   
     
     //player.play(ANIM_IDLE) 
