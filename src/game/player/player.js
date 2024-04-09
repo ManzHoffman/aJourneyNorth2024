@@ -96,7 +96,20 @@ idle(true);
 
 	})
 
-    
+    player.onGround(() => {
+
+        if (isKeyDown(controls.backward)) 
+        {
+            walk(false)
+
+        }
+        else if(isKeyDown(controls.forward))
+        {
+            walk(true)
+
+        }
+
+    })
     player.onCollide("plant", (plant) => {
       
         play("eat", { loop: false, volume:0.5 });
