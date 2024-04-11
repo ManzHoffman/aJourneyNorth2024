@@ -15,3 +15,13 @@ const loose = {
   dead:"Vous êtes mort !",
 
 };
+
+const npc_friend = {
+  hole: "Salut Frostell, regarde ce trou dans la glace.\nC'est le genre de chose qui peut te piéger si tu n'y fais pas attention.\nAvec la fonte des glaces de plus en plus rapide ces jours-ci,\nil y en a de plus en plus.\nVeille à ne pas tomber dedans !",
+
+};
+
+const frostell = {
+  intro: "Salut, je m'appelle Frostell. Bienvenue dans les terres glacées de l'Arctique ! J'ai besoin de ton aide. En effet, plus au sud, plusieurs de mes compagnons rennes sont en danger, piégés par la fonte des glaces. Je me dois de leur porter secours !",
+
+};

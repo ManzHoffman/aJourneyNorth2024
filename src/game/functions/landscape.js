@@ -1,4 +1,7 @@
 function loadSeaAndSky(){
+
+
+
     for (let i = 0; i < 80; i++) {
         add([
         sprite(sky),
@@ -27,6 +30,7 @@ function loadSeaAndSky(){
 
 function generateFloe(posx,size)
 {
+
 
     let positionMiddle = 0;
 

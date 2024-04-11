@@ -31,6 +31,10 @@ const FONTS = {
 	marykate: "./src/game/assets/fonts/marykate.ttf"
 
 }
+let fontKeys = Object.keys(FONTS);
+
+let marykateFont = fontKeys[2];
+
 
 // LOAD FONTS
 loadGameElements(FONTS,"font")
@@ -51,18 +55,25 @@ const sky = "sky"
 const icelongLeft = "icelongLeft"
 const icelongMiddle = "icelongMiddle"
 const icelongRight = "icelongRight"
-
+const friendIdle = "friendIdle"
+const iceBlock = "iceBlock"
+const iceBlock2 = "iceBlock2"
 const sign = "sign"
-
+const platformHole = "platform_hole"
+const convBox = "convBox"
 
 loadSprite(sea, "./src/game/assets/elements/landscape/arctic/sea_colour_strip.png")
 loadSprite(sky, "./src/game/assets/elements/landscape/arctic/sky_colour_strip.png")
 
-loadSprite("iceBlock", "./src/game/assets/elements/landscape/arctic/block1.png");
-loadSprite("iceBlock2", "./src/game/assets/elements/landscape/arctic/block2.png");
+loadSprite(iceBlock, "./src/game/assets/elements/landscape/arctic/block1.png");
+loadSprite(iceBlock2, "./src/game/assets/elements/landscape/arctic/block2.png");
 loadSprite(icelongLeft, "./src/game/assets/elements/landscape/arctic/platform_edge_left_jagged.png");
-loadSprite(icelongRight, "./src/game/assets/elements/landscape/arctic/platform_edge_right_jagged.png");
 loadSprite(icelongMiddle, "./src/game/assets/elements/landscape/arctic/platform_short_repeating.png");
+loadSprite(icelongRight, "./src/game/assets/elements/landscape/arctic/platform_edge_right_jagged.png");
+loadSprite(platformHole, "./src/game/assets/elements/landscape/arctic/platform_hole.png");
+
+loadSprite(convBox, "./src/game/assets/elements/conv/rect-tag-above.png");
+
 loadSprite(sign, "./src/game/assets/elements/obj/sign.png");
 
 const SPRITES = {
@@ -260,7 +271,23 @@ loadSprite(seagullFly,"./src/game/assets/elements/enemy/seagull/seagull_fly.png"
 
 	},
 })
+loadSprite(friendIdle,"./src/game/assets/elements/npc/friend/friend_idle.png", {
+	// The image contains 9 frames layed out horizontally, slice it into individual frames
+	sliceX: 5,
+    sliceY: 4,
+	// Define animations
+	anims: {
+		"idle": {
+			// Starts from frame 0, ends at frame 3
+			from: 0,
+			to: 19,
+			// Frame per second
+			speed: FRAME_SPEED,
+			loop: true,
+		},
 
+	},
+})
 const bgImage =  loadSprite("background", "./src/game/assets/elements/landscape/01/layers/l1-background.png");
 const bgImageDay =  loadSprite("backgroundDay", "./src/game/assets/elements/landscape/04/layers/l1-backgrounds.png");
 const clouds =  loadSprite("clouds", "./src/game/assets/elements/landscape/04/layers/l2-clouds01.png");

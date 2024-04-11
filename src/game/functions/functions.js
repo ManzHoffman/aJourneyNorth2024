@@ -1,21 +1,27 @@
-function addText(textMain,size,color,fontType,align, posx,posy) {
+const changeColor = ((obj, colorToPut) => {obj.color = colorToPut })
 
-    add([
+function addText(textMain,size,color,fontType,align, posx,posy) {
+ 
+
+    var textToEdit = add([
+   
         text(textMain,{
             size: size,
-            color,
             font: fontType,
-    
+
+
           }),
           anchor(align),
         //width()/2,height()/2-200
           pos(posx,posy),
-    
-    
-          { value: 0 },
+        
           fixed(),
+          { value: 0 },
+          
     
       ])
+
+  changeColor(textToEdit, color)
     
 }
 

@@ -9,10 +9,10 @@ function displayLevelZero(posx,posy) {
         "                                                                                                ",
         "                                                                                                ",
         "                                                                                                ",
-        "                                                                                                ",
-        "@                                                                                               ",
-        "                                                                                                ",
-        "================================== ",
+        "=                                                                                               ",
+        "=                                                                                               ",
+        "= @              *                                                                              ",
+        "=================%================ ",
     ], {
         // define the size of tile block
         tileWidth: 180,
@@ -33,25 +33,16 @@ function displayLevelZero(posx,posy) {
                 health(P_HEALTH),
                 "player",
             ],
-        
-            "$": () => [
-              
-                sprite(iceBlock2),
-                area({ shape: new Rect(vec2(0), 250, 90 )}),
+            "*": () => [
+                sprite(friendIdle,{anim: ANIM_IDLE}),
+                //pos(posx,posy),
+                
+                //anchor("center"),
+                body(),
+                area({ shape: new Rect(vec2(0), 100, 160)}),
                 anchor("center"),
-                body({ isStatic: true }),
-                scale(0.5),
-               // fixed(),
-              
-            ],
-            "H": () => [
-              
-                sprite("plant"),
-                area({ shape: new Rect(vec2(0),20, 20 )}),
-                //body({ isStatic: tr ue }),
-                anchor("center"),
-                scale(0.2),
-                "plant",
+                //scale(0.5),
+                friendIdle,
             ],
             "S": () => [
               
@@ -98,11 +89,30 @@ function displayLevelZero(posx,posy) {
                 anchor("center"),
                 health(W_WHITE_HEALTH),
                 state("idle", [ "idle", "attack","die"]),
-                "walrusWhite",
+                "invisibleBLock",
             ],
+            "$": () => [
           
+                sprite(iceBlock2),
+                area({ shape: new Rect(vec2(0), 250, 90 )}),
+                anchor("center"),
+                body({ isStatic: true }),
+                scale(0.5),
+               // fixed(),
+              
+            ],
+            "%": () => [
+          
+                sprite(platformHole),
+                area({ shape: new Rect(vec2(0), 250, 90 )}),
+                anchor("center"),
+                body({ isStatic: true }),
+                scale(0.5),
+               // fixed(),
+              
+            ]
         }
-
+        //
       
 
     })
@@ -116,6 +126,11 @@ function displayLevelZero(posx,posy) {
 
 
     initPlayer(110,800,level0.get("player")[0]);
+    friendCinematicLevelZero(level0.get("player")[0]);
+
+    spawnFriend(level0.get(friendIdle)[0]);
+
+
 
 }
 function displayLevelOne(posx,posy) {

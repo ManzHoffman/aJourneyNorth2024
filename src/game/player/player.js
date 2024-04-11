@@ -183,8 +183,12 @@ onMousePress("left", async (pos) => {
 
 
 onKeyPress(controls.forward, () => {
- 
+
+    if (!IS_CINEMATIC_MODE_ON) {
+        
     walk(true)
+    }
+ 
   
 
   
@@ -194,18 +198,23 @@ onKeyPress(controls.forward, () => {
 
 onKeyPress(controls.backward, () => {
 
+    if (!IS_CINEMATIC_MODE_ON) {
+
+        walk(false)
+    }
    
-    walk(false)
+ 
  
 })
 
 
 onKeyDown(controls.backward, () => {
 
-   
+    if (!IS_CINEMATIC_MODE_ON) {
+
     player.move(-SPEED, 0)
     
- 
+    }
 })
 
 
@@ -213,10 +222,12 @@ onKeyDown(controls.backward, () => {
 
 onKeyRelease(controls.backward, () => {
     
-   
+    if (!IS_CINEMATIC_MODE_ON) {
+
 
 
     idle(false)
+    }
     
 
 })

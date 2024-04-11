@@ -127,7 +127,6 @@ scene("menu", () => {
     } )
      optionButton.onHoverEnd(() => {changeColor(optionButton,icyWhite)  })
 
-      const changeColor = ((obj, colorToPut) => {obj.color = colorToPut })
   
 
 });

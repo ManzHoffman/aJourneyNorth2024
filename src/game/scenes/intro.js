@@ -1,5 +1,4 @@
-
- scene("intro", (level) => {
+scene("intro", (level) => {
 
     switch (level) {
         case 1:
@@ -41,7 +40,7 @@
           addText(level1.title,68,icyWhite,"arctic","center",width()/2,height()/2-350)
           addText(level1.localisation,48,icyWhite,"arctic","center",width()/2,height()/2-200)
          
-          addText(level1.description,30,icyWhite,"marykate","center",680,450)
+          //addText(level1.description,30,icyWhite,"marykate","center",680,450)
 
     
             

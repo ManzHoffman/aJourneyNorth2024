@@ -31,7 +31,7 @@ const W_WHITE_SHOT_FREQUENCY = 1.8;
 
 const S_HEALTH = 2;
 
-
+const DEFAULT_CINEMATIC_TIME = 7;
 
 const ANIM_IDLE = "idle";
 const ANIM_WALK = "walk";
@@ -43,7 +43,7 @@ const ANIM_W_DIE = "w_die";
 const ANIM_S_FLY = "fly";
 const ANIM_SNOWBALL = "fly";
 const ANIM_BASIC_WEAPON_P = "shot";
-
+var IS_CINEMATIC_MODE_ON = false;
 var rightInnerSprite ;
 var centerInnerSprite;
 var centerInnerSpriteArray = [];

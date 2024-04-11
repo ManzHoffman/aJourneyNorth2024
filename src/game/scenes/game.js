@@ -7,8 +7,12 @@ P_HEALTH = MAX_HEALTH;
     
 switch (level) {
     case 0:
-      var level = displayLevelZero(100, -600 );
 
+
+
+
+      var level = displayLevelZero(100, -600 );
+      
 
 
 
@@ -56,7 +60,6 @@ switch (level) {
 displayLives();
 displayOuterBar();
 displayBar(P_HEALTH,false);
-
 
 
 
