@@ -1,15 +1,30 @@
+function launchCinematic(cinematic)
+{
+  //IS_CINEMATIC_MODE_ON = true;
+  const boxFinal = generateBoxReindeer(cinematic.speaker,cinematic.text)
+
+
+  wait(cinematic.duration, () => {
+		
+    RemoveBox(boxFinal);
+    IS_CINEMATIC_MODE_ON = false;
+  })
+
+}
+/*
 function friendCinematicLevelZero(player)
 {
     //IS_CINEMATIC_MODE_ON = true;
-    const boxFinal = generateBoxReindeer(player,frostell.intro)
+    const boxFinal = generateBoxReindeer(player,PLAYER_SPEECH.intro)
 
 
     wait(DEFAULT_CINEMATIC_TIME, () => {
 		
       RemoveBox(boxFinal);
+      IS_CINEMATIC_MODE_ON = false;
     })
 
-}
+}*/
 
 
 function RemoveBox(elements)
@@ -27,7 +42,20 @@ function generateBoxReindeer(element, textToDisplay)
 
 var boxShown = [];
 
-element.flipX = true
+let boxPosX = element.pos.x;
+let boxPosY = element.pos.y;
+
+
+if (element.flipX) {
+
+  boxPosX = boxPosX + 50;
+  boxPosY = boxPosY - 350;
+}
+else{
+  boxPosX = boxPosX - 450;
+  boxPosY = boxPosY - 350;
+}
+
 /*
  const box = add([
         sprite(convBox),
@@ -37,12 +65,9 @@ element.flipX = true
       ])*/
 
 
-      const boxPosX = element.pos.x;
-      const boxPosY = element.pos.y;
-
 
       const frameShown = add([
-        pos(boxPosX + 50, boxPosY - 350),
+        pos(boxPosX, boxPosY),
         rect(400, 200),
         outline(4),
         area(),
@@ -56,7 +81,7 @@ element.flipX = true
         //outline(4),
         //area(),
         //color(icyWhite),
-        pos(boxPosX + 50 +5 , boxPosY - 350 +5),
+        pos(boxPosX +5 , boxPosY  +5),
         text(textToDisplay,{
           font: marykateFont,
           size: 22,
@@ -73,7 +98,7 @@ element.flipX = true
 
     changeColor(textShown,icyBlack)
 
-    boxShown.flipX = true;
+  
 
     boxShown.push(frameShown)
     boxShown.push(textShown)

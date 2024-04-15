@@ -1,8 +1,4 @@
 // IMPORTING GAME ASSETS
-
-
-
-
 // SOUNDS
 const SOUNDS = {
 	menuBackground: "./src/game/assets/sounds/background_menu.wav",
@@ -40,300 +36,82 @@ let marykateFont = fontKeys[2];
 loadGameElements(FONTS,"font")
 
 // SPRITES
+const SPRITES = 
 
-const snowball_enemy = "snowball_enemy";
-const basic_weapon_player = "basic_weapon_player"
-const leftOuter = "leftOuter"
-const rightOuter = "rightOuter"
-const centerOuter = "centerOuter"
-const leftInner = "leftInner"
-const rightInner = "rightInner"
-const centerInner = "centerInner"
-const seagullFly = "seagullFly"
-const sea = "sea"
-const sky = "sky"
-const icelongLeft = "icelongLeft"
-const icelongMiddle = "icelongMiddle"
-const icelongRight = "icelongRight"
-const friendIdle = "friendIdle"
-const iceBlock = "iceBlock"
-const iceBlock2 = "iceBlock2"
-const sign = "sign"
-const platformHole = "platform_hole"
-const convBox = "convBox"
-
-loadSprite(sea, "./src/game/assets/elements/landscape/arctic/sea_colour_strip.png")
-loadSprite(sky, "./src/game/assets/elements/landscape/arctic/sky_colour_strip.png")
-
-loadSprite(iceBlock, "./src/game/assets/elements/landscape/arctic/block1.png");
-loadSprite(iceBlock2, "./src/game/assets/elements/landscape/arctic/block2.png");
-loadSprite(icelongLeft, "./src/game/assets/elements/landscape/arctic/platform_edge_left_jagged.png");
-loadSprite(icelongMiddle, "./src/game/assets/elements/landscape/arctic/platform_short_repeating.png");
-loadSprite(icelongRight, "./src/game/assets/elements/landscape/arctic/platform_edge_right_jagged.png");
-loadSprite(platformHole, "./src/game/assets/elements/landscape/arctic/platform_hole.png");
-
-loadSprite(convBox, "./src/game/assets/elements/conv/rect-tag-above.png");
-
-loadSprite(sign, "./src/game/assets/elements/obj/sign.png");
-
-const SPRITES = {
+{
+	
+	leftOuter:"./src/game/assets/elements/lifebar/meter_bar_holder_left_edge_red.png",
+	rightOuter:"./src/game/assets/elements/lifebar/meter_bar_holder_right_edge_red.png",
+	centerOuter:"./src/game/assets/elements/lifebar/meter_bar_holder_center-repeating_red.png",
+	leftInner:"./src/game/assets/elements/lifebar/meter_bar_left_edge_red.png",
+	rightInner: "./src/game/assets/elements/lifebar/meter_bar_right_edge_red.png",
+	centerInner:"./src/game/assets/elements/lifebar/meter_bar_center-repeating_red.png",
+	sea:"./src/game/assets/elements/landscape/arctic/sea_colour_strip.png",
+	sky:"./src/game/assets/elements/landscape/arctic/sky_colour_strip.png",
+	icelongLeft:"./src/game/assets/elements/landscape/arctic/platform_edge_left_jagged.png",
+	icelongMiddle:"./src/game/assets/elements/landscape/arctic/platform_short_repeating.png",
+	icelongRight:"./src/game/assets/elements/landscape/arctic/platform_edge_right_jagged.png",
+	iceBlock:"./src/game/assets/elements/landscape/arctic/block1.png",
+	iceBlock2:"./src/game/assets/elements/landscape/arctic/block2.png",
+	sign:"./src/game/assets/elements/obj/sign.png",
+	platformHole:"./src/game/assets/elements/landscape/arctic/platform_hole.png",
+	platformBigHole:"./src/game/assets/elements/landscape/arctic/platform_crack.png",
+	convBox:"./src/game/assets/elements/conv/rect-tag-above.png",
+	iceBerg1: "./src/game/assets/elements/landscape/arctic/iceberg_02.png",
+	iceBerg2: "./src/game/assets/elements/landscape/arctic/iceberg_03.png",
+	iceBerg3: "./src/game/assets/elements/landscape/arctic/iceberg_04.png",
+	iceBerg4: "./src/game/assets/elements/landscape/arctic/iceberg_05.png",
+	iceBerg5: "./src/game/assets/elements/landscape/arctic/iceberg_06.png",
+	title:"./src/game/assets/elements/title/gameTitle.png",
+	plant:"./src/game/assets/elements/landscape/blocks/herb.png",
+	triggerIntro:"",
+	background: "./src/game/assets/elements/landscape/01/layers/l1-background.png",
+	backgroundDay: "./src/game/assets/elements/landscape/04/layers/l1-backgrounds.png",
+	clouds: "./src/game/assets/elements/landscape/04/layers/l2-clouds01.png",
+	borealisPurple: "./src/game/assets/elements/landscape/01/layers/l5-northern-lights02.png",
+	borealis: "./src/game/assets/elements/landscape/01/layers/l2-northern-lights01.png",
+	ice: "./src/game/assets/elements/landscape/01/layers/l9-ground.png",
+	stars: "./src/game/assets/elements/landscape/01/layers/l4-stars.png",
+	mountains: "./src/game/assets/elements/landscape/01/layers/l7-mountains01.png",
+	mountainsFarAway: "./src/game/assets/elements/landscape/01/layers/l8-mountains02.png",
+	mountainsDay: "./src/game/assets/elements/landscape/03/layers/l2-mountains01.png",
+	starNormal: "./src/game/assets/elements/obj/star.png",
+	starLocked: "./src/game/assets/elements/obj/star_lock.png",
+	pinPoint: "./src/game/assets/elements/obj/pinpoint.png",
+	map: "./src/game/assets/elements/obj/map.png",
+	life: "./src/game/assets/elements/obj/health_potion.png"
 }
 
 
 
-// PLAYER
+loadGameElements(SPRITES,"sprite")
+createVariables(SPRITES);
 
-loadSprite("playerIdle","./src/game/assets/elements/player/basicReindeer/reindeer_idle.png", {
-	// The image contains 9 frames layed out horizontally, slice it into individual frames
-	sliceX: 5,
-    sliceY: 4,
-	// Define animations
-	anims: {
-		"idle": {
-			// Starts from frame 0, ends at frame 3
-			from: 0,
-			to: 19,
-			// Frame per second
-			speed: FRAME_SPEED,
-			loop: true,
-		},
+const ANIMATED_SPRITES = 
+{
+	snowball_enemy:[{name: "snowball_enemy", src:"./src/game/assets/elements/projectile/snowball.png",sliceX:3,sliceY:2,anim: ANIM_SNOWBALL,from:0,to:5,speed:3,loop:true}],
+	playerIdle:[{name: "playerIdle", src:"./src/game/assets/elements/player/basicReindeer/reindeer_idle.png",sliceX:5,sliceY:4,anim: ANIM_IDLE,from:0,to:19,speed:FRAME_SPEED,loop:true}],
+	playerWalk:[{name: "playerWalk", src:"./src/game/assets/elements/player/basicReindeer/reindeer_walking.png",sliceX:5,sliceY:3,anim: ANIM_WALK,from:0,to:14,speed:FRAME_SPEED,loop:true}],
+	playerJump:[{name: "playerJump", src:"./src/game/assets/elements/player/basicReindeer/reindeer_jump.png",sliceX:5,sliceY:3,anim: ANIM_JUMP,from:0,to:14,speed:FRAME_SPEED,loop:false}],
+	playerDie:[{name: "playerDie", src:"./src/game/assets/elements/player/basicReindeer/reindeer_die.png",sliceX:5,sliceY:2,anim: ANIM_DIE,from:0,to:9,speed:FRAME_SPEED,loop:false}],
+	//playerEat:[{name: "playerDie", src:"./src/game/assets/elements/player/basicReindeer/reindeer_eat.png",sliceX:5,sliceY:2,anim: ANIM_EAT,from:0,to:9,speed:FRAME_SPEED,loop:false}],
+	walrusIdle:[{name: "walrusIdle", src:"./src/game/assets/elements/enemy/walrus/walrusWhite/walrus_idle.png",sliceX:5,sliceY:4,anim: ANIM_W_IDLE,from:0,to:19,speed:3,loop:true}],
+	walrusAttack:[{name: "walrusAttack", src:"./src/game/assets/elements/enemy/walrus/walrusWhite/walrus_idle.png",sliceX:4,sliceY:2,anim: ANIM_W_ATTACK,from:0,to:7,speed:3,loop:false}],
+	walrusDie:[{name: "walrusDie", src:"./src/game/assets/elements/enemy/walrus/walrusWhite/walrus_die.png",sliceX:5,sliceY:3,anim: ANIM_W_DIE,from:0,to:7,speed:3,loop:false}],
+	basic_weapon_player:[{name: "basic_weapon_player", src:"./src/game/assets/elements/projectile/basic_weapon_player.png",sliceX:3,sliceY:2,anim: ANIM_BASIC_WEAPON_P,from:0,to:5,speed:3,loop:true}],
+	seagullFly:[{name: "seagullFly", src:"./src/game/assets/elements/enemy/seagull/seagull_fly.png",sliceX:4,sliceY:3,anim: ANIM_S_FLY,from:0,to:9,speed:5,loop:true}],
+	friendIdle:[{name: "friendIdle", src:"./src/game/assets/elements/npc/friend/friend_idle.png",sliceX:5,sliceY:4,anim: ANIM_IDLE,from:0,to:19,speed:FRAME_SPEED,loop:true}],
 
-	},
-})
-loadSprite("playerWalk","./src/game/assets/elements/player/basicReindeer/reindeer_walking.png", {
-	// The image contains 9 frames layed out horizontally, slice it into individual frames
-	sliceX: 5,
-    sliceY: 3,
-	// Define animations
-	anims: {
-		"walk": {
-			// Starts from frame 0, ends at frame 3
-			from: 0,
-			to: 14,
-			// Frame per second
-			speed: FRAME_SPEED,
-			loop: true,
-		},
+}
 
-	},
-})
-loadSprite("playerJump","./src/game/assets/elements/player/basicReindeer/reindeer_jump.png", {
-	// The image contains 9 frames layed out horizontally, slice it into individual frames
-	sliceX: 5,
-    sliceY: 3,
-	// Define animations
-	anims: {
-		"jump": {
-			// Starts from frame 0, ends at frame 3
-			from: 0,
-			to: 14,
-			// Frame per second
-			speed: FRAME_SPEED,
-			loop: false,
-		},
+loadGameElements(ANIMATED_SPRITES,"animatedSprite")
+createVariables(ANIMATED_SPRITES);
 
-	},
-})
-
-loadSprite("playerDie","./src/game/assets/elements/player/basicReindeer/reindeer_die.png", {
-	// The image contains 9 frames layed out horizontally, slice it into individual frames
-	sliceX: 5,
-    sliceY: 2,
-	// Define animations
-	anims: {
-		"die": {
-			// Starts from frame 0, ends at frame 3
-			from: 0,
-			to: 9,
-			// Frame per second
-			speed: FRAME_SPEED,
-			loop: false,
-		},
-
-	},
-})
-loadSprite("playerEat","./src/game/assets/elements/player/basicReindeer/reindeer_eat.png", {
-	// The image contains 9 frames layed out horizontally, slice it into individual frames
-	sliceX: 5,
-    sliceY: 2,
-	// Define animations
-	anims: {
-		"eat": {
-			// Starts from frame 0, ends at frame 3
-			from: 0,
-			to: 9,
-			// Frame per second
-			speed: FRAME_SPEED,
-			loop: false,
-		},
-
-	},
-})
-loadSprite("walrusIdle","./src/game/assets/elements/enemy/walrus/walrusWhite/walrus_idle.png", {
-	// The image contains 20 frames layed out horizontally, slice it into individual frames
-	sliceX: 5,
-    sliceY: 4,
-	// Define animations
-	anims: {
-		"w_idle": {
-			// Starts from frame 0, ends at frame 3
-			from: 0,
-			to: 19,
-			// Frame per second
-			speed: 3 ,
-			loop: true,
-		},
-
-	},
-})
-loadSprite("walrusAttack","./src/game/assets/elements/enemy/walrus/walrusWhite/walrus_attack.png", {
-	// The image contains 9 frames layed out horizontally, slice it into individual frames
-	sliceX: 4,
-    sliceY: 2,
-	// Define animations
-	anims: {
-		"w_attack": {
-			// Starts from frame 0, ends at frame 3
-			from: 0,
-			to: 7,
-			// Frame per second
-			speed: 3 ,
-			loop: false,
-		},
-
-	},
-})
-
-loadSprite("walrusDie","./src/game/assets/elements/enemy/walrus/walrusWhite/walrus_die.png", {
-	// The image contains 9 frames layed out horizontally, slice it into individual frames
-	sliceX: 5,
-    sliceY: 3,
-	// Define animations
-	anims: {
-		"w_die": {
-			// Starts from frame 0, ends at frame 3
-			from: 0,
-			to: 7,
-			// Frame per second
-			speed: 3 ,
-			loop: false,
-		},
-
-	},
-})
- loadSprite(snowball_enemy,"./src/game/assets/elements/projectile/snowball.png", {
-	// The image contains 9 frames layed out horizontally, slice it into individual frames
-	sliceX: 3,
-    sliceY: 2,
-	// Define animations
-	anims: {
-		"fly": {
-			// Starts from frame 0, ends at frame 3
-			from: 0,
-			to: 5,
-			// Frame per second
-			speed: 3 ,
-			loop: true,
-		},
-
-	},
-})
- loadSprite(basic_weapon_player,"./src/game/assets/elements/projectile/basic_weapon_player.png", {
-	// The image contains 9 frames layed out horizontally, slice it into individual frames
-	sliceX: 3,
-    sliceY: 2,
-	// Define animations
-	anims: {
-		"shot": {
-			// Starts from frame 0, ends at frame 3
-			from: 0,
-			to: 5,
-			// Frame per second
-			speed: 3 ,
-			loop: true,
-		},
-
-	},
-})
-loadSprite(seagullFly,"./src/game/assets/elements/enemy/seagull/seagull_fly.png", {
-	sliceX: 4,
-    sliceY: 3,
-	// Define animations
-	anims: {
-		"fly": {
-			// Starts from frame 0, ends at frame 9
-			from: 0,
-			to: 9,
-			// Frame per second
-			speed: 5,
-			loop: true,
-		},
-
-	},
-})
-loadSprite(friendIdle,"./src/game/assets/elements/npc/friend/friend_idle.png", {
-	// The image contains 9 frames layed out horizontally, slice it into individual frames
-	sliceX: 5,
-    sliceY: 4,
-	// Define animations
-	anims: {
-		"idle": {
-			// Starts from frame 0, ends at frame 3
-			from: 0,
-			to: 19,
-			// Frame per second
-			speed: FRAME_SPEED,
-			loop: true,
-		},
-
-	},
-})
-const bgImage =  loadSprite("background", "./src/game/assets/elements/landscape/01/layers/l1-background.png");
-const bgImageDay =  loadSprite("backgroundDay", "./src/game/assets/elements/landscape/04/layers/l1-backgrounds.png");
-const clouds =  loadSprite("clouds", "./src/game/assets/elements/landscape/04/layers/l2-clouds01.png");
-const borealisPurple =  loadSprite("borealisPurple", "./src/game/assets/elements/landscape/01/layers/l5-northern-lights02.png")
-const borealis =  loadSprite("borealis", "./src/game/assets/elements/landscape/01/layers/l2-northern-lights01.png",{
-  anims: {
-    
-      jump: {
-          from: 3,
-          to: 1,
-      },
- 
-  },});
-
-const ice =  loadSprite("ice", "./src/game/assets/elements/landscape/01/layers/l9-ground.png")
-const stars =  loadSprite("stars", "./src/game/assets/elements/landscape/01/layers/l4-stars.png");
-const mountains =  loadSprite("mountains", "./src/game/assets/elements/landscape/01/layers/l7-mountains01.png");
-const mountainsFarAway =  loadSprite("mountainsFarAway", "./src/game/assets/elements/landscape/01/layers/l8-mountains02.png");
-const mountainsDay =  loadSprite("mountainsDay", "./src/game/assets/elements/landscape/03/layers/l2-mountains01.png");
-
-
-const map =  loadSprite("map", "./src/game/assets/elements/obj/map.png",{
-
-})
-
-
-const starNormal =  loadSprite("starNormal", "./src/game/assets/elements/obj/star.png")
-const starLocked =  loadSprite("starLocked", "./src/game/assets/elements/obj/star_lock.png")
-const pinPoint =  loadSprite("pinPoint", "./src/game/assets/elements/obj/pinpoint.png");
-
-loadSprite("plant", "./src/game/assets/elements/landscape/blocks/herb.png");
-
-const life =  loadSprite("life", "./src/game/assets/elements/obj/health_potion.png");
-
-// BAR RED
-loadSprite(leftOuter, "./src/game/assets/elements/lifebar/meter_bar_holder_left_edge_red.png")
-loadSprite(rightOuter, "./src/game/assets/elements/lifebar/meter_bar_holder_right_edge_red.png")
-loadSprite(centerOuter, "./src/game/assets/elements/lifebar/meter_bar_holder_center-repeating_red.png")
-loadSprite(leftInner, "./src/game/assets/elements/lifebar/meter_bar_left_edge_red.png")
-loadSprite(rightInner, "./src/game/assets/elements/lifebar/meter_bar_right_edge_red.png")
-loadSprite(centerInner, "./src/game/assets/elements/lifebar/meter_bar_center-repeating_red.png")
 
 
 
 // TITLE
-const gameTitle =  loadSprite("title", "./src/game/assets/elements/title/gameTitle.png");
+
 
 
 var displayLivesArray =[starNormal,starNormal,starNormal]

@@ -1,7 +1,15 @@
+const cinematicProperties = {
+obj:"",
+duration:0,
+text:"",
 
+
+}
 function displayLevelZero(posx,posy) {
-    loadSeaAndSky();
+    generateSeaAndSky();
     generateFloe(0,10);
+    generateIcebergs();
+
     windAmbiance.paused = false;
 
     const level0 = addLevel([
@@ -11,8 +19,8 @@ function displayLevelZero(posx,posy) {
         "                                                                                                ",
         "=                                                                                               ",
         "=                                                                                               ",
-        "= @              *                                                                              ",
-        "=================%================ ",
+        "= @I              *          ^                                                                  ",
+        "=================%=========== ==== ",
     ], {
         // define the size of tile block
         tileWidth: 180,
@@ -20,7 +28,26 @@ function displayLevelZero(posx,posy) {
         pos: vec2(0, -50),
         // define what each symbol means, by a function returning a component list (what will be passed to add())
         tiles: {
-
+            "%": () => [
+          
+                sprite(platformHole),
+                area({ shape: new Rect(vec2(0), 0, 0 )}),
+                anchor("center"),
+                body({ isStatic: true }),
+                scale(0.5),
+               // fixed(),
+              
+            ],
+            "^": () => [
+          
+                sprite(platformBigHole),
+                area({ shape: new Rect(vec2(0), 0, 0 )}),
+                anchor("center"),
+                body({ isStatic: true }),
+                scale(0.7),
+               // fixed(),
+              
+            ],
     
             "@": () => [
                 sprite("playerIdle"),
@@ -101,16 +128,16 @@ function displayLevelZero(posx,posy) {
                // fixed(),
               
             ],
-            "%": () => [
+            "I": () => [
           
-                sprite(platformHole),
-                area({ shape: new Rect(vec2(0), 250, 90 )}),
+                area({ shape: new Rect(vec2(0), 0, 0 )}),
                 anchor("center"),
                 body({ isStatic: true }),
-                scale(0.5),
                // fixed(),
+               triggerIntro,
               
             ]
+      
         }
         //
       
@@ -118,15 +145,36 @@ function displayLevelZero(posx,posy) {
     })
 
     
-  
+     cinematicObjPoints = {
+
+        cinematic0:[{
+            objTrigger:level0.get(triggerIntro)[0],
+            speaker:level0.get("player")[0],
+            duration:5,
+            text: PLAYER_SPEECH.intro,
+            played:false,
+
+
+        }],
+        cinematic1:[{
+            objTrigger:level0.get(friendIdle)[0],
+            speaker:level0.get(friendIdle)[0],
+            duration:5,
+            text: NPC_FRIEND.hole,
+            played:false,
+
+
+        }],
+
+
+    }
     //const enemy = level.get("walrusWhite")[0]
  
    // const enemies =  level.get("walrusWhite");
     //const numberOfWalrusWhiteElements = enemies.length;
 
-
     initPlayer(110,800,level0.get("player")[0]);
-    friendCinematicLevelZero(level0.get("player")[0]);
+    //friendCinematicLevelZero(level0.get("player")[0]);
 
     spawnFriend(level0.get(friendIdle)[0]);
 
@@ -155,7 +203,6 @@ function displayLevelOne(posx,posy) {
       ])*/
 
    
-loadSeaAndSky();
 
 return addLevel([
     "                                                                                                ",

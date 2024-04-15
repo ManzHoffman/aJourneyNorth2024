@@ -1,4 +1,4 @@
-function loadSeaAndSky(){
+function generateSeaAndSky(){
 
 
 
@@ -78,5 +78,28 @@ function generateFloe(posx,size)
        // fixed(),
     */
     
+
+}
+
+
+function generateIcebergs()
+{
+  const ICEBERGS = [iceBerg1,iceBerg2,iceBerg3,iceBerg4,iceBerg5]
+  let rdnNumberIcebergType = 0;
+  let rdnNumberIcebergDistance = 0;
+  
+  for (let i = 0; i < 20; i++) {
+
+    rdnNumberIcebergType  = randi(0,5);
+    rdnNumberIcebergDistance  = randi(1000,1300);
+   // rdnNumber = randi(4) // returns 0, 1, 2 or 3;
+
+    add([
+      sprite(ICEBERGS[rdnNumberIcebergType]),
+      scale(0.5),
+      pos( vec2(-800 + i*rdnNumberIcebergDistance, 150)),
+    ])
+  }
+  
 
 }

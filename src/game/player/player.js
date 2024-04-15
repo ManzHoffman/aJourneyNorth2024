@@ -77,10 +77,11 @@ idle(true);
 		if (player.pos.y >= FALL_DEATH) {
 			go("lose")
 		}
+        /*
         else if(player.pos.y >= FALL_DEATH_SOUND && !player.isGrounded() && falling.paused == true)
         {
             falling.paused = false
-        }
+        }*/
 
         if (player.isGrounded() && player.curAnim() == ANIM_WALK) {
             walkNoise.paused = false;
@@ -90,6 +91,31 @@ idle(true);
             walkNoise.paused = true;
 
         }
+
+
+
+        for (let key in cinematicObjPoints) {
+            let cinematicArray = cinematicObjPoints[key];
+            for (let i = 0; i < cinematicArray.length; i++) {
+        
+               // console.log("pos :" + cinematicArray[i].obj.pos)    
+
+                if (player.pos.dist(cinematicArray[i].objTrigger.pos) < DEFAULT_CINEMATIC_TRIGGER_DISTANCE && !cinematicArray[i].played) {
+
+                    launchCinematic(cinematicArray[i]);
+                    cinematicArray[i].played = true;
+                    idle(true);
+
+                }
+
+
+                // Do something with obj and duration
+               // console.log(`Object: ${obj}, Duration: ${duration}`);
+            }
+        }
+
+
+    
     
 
 
@@ -98,16 +124,16 @@ idle(true);
 
     player.onGround(() => {
 
-        if (isKeyDown(controls.backward)) 
+        if (isKeyDown(controls.backward) && !isKeyDown(controls.forward))  
         {
             walk(false)
 
         }
-        else if(isKeyDown(controls.forward))
+        else if(isKeyDown(controls.forward) && !isKeyDown(controls.backward))
         {
             walk(true)
-
         }
+        
 
     })
     player.onCollide("plant", (plant) => {
@@ -143,14 +169,7 @@ idle(true);
 
 
 
-    onKeyDown(controls.forward, () => {
-    
-    player.move(SPEED, 0)
 
-  
-
-  
-})
 // Function to make player blink
 async function playerHitAnim(player, duration) {
 // Function to make player blink
@@ -172,9 +191,10 @@ function shoot() {
 }
 
 onMousePress("left", async (pos) => {
-
+    if (!IS_CINEMATIC_MODE_ON) {
 
     shoot()
+    }
    // const projectile = spawnPlayerProjectile(player.pos,player)   
     //spawnBullet(player.pos,player, enemy, true);
  
@@ -184,7 +204,7 @@ onMousePress("left", async (pos) => {
 
 onKeyPress(controls.forward, () => {
 
-    if (!IS_CINEMATIC_MODE_ON) {
+    if (!IS_CINEMATIC_MODE_ON && !isKeyDown(controls.backward)) {
         
     walk(true)
     }
@@ -198,7 +218,7 @@ onKeyPress(controls.forward, () => {
 
 onKeyPress(controls.backward, () => {
 
-    if (!IS_CINEMATIC_MODE_ON) {
+    if (!IS_CINEMATIC_MODE_ON && !isKeyDown(controls.forward)) {
 
         walk(false)
     }
@@ -206,35 +226,56 @@ onKeyPress(controls.backward, () => {
  
  
 })
+onKeyDown(controls.forward, () => {
 
+    
+    if (!IS_CINEMATIC_MODE_ON && !isKeyDown(controls.backward)) {  
+    player.move(SPEED, 0)
+
+    }
+    else
+    {
+        idle(false)
+    }
+
+  
+})
 
 onKeyDown(controls.backward, () => {
 
-    if (!IS_CINEMATIC_MODE_ON) {
+    if (!IS_CINEMATIC_MODE_ON && !isKeyDown(controls.forward)) {
 
     player.move(-SPEED, 0)
     
     }
-})
+    else
+    {
+        idle(true)
+    }
 
+})
 
 
 
 onKeyRelease(controls.backward, () => {
     
-    if (!IS_CINEMATIC_MODE_ON) {
 
 
-
-    idle(false)
-    }
+if (!isKeyDown(controls.forward)) {
+     idle(false)
+}
+   
+    
     
 
 })
 onKeyRelease(controls.forward, () => {
     
 
-    idle(true)
+    if (!isKeyDown(controls.backward)) {
+          idle(true)
+    }
+  
  
 
 })
@@ -242,10 +283,10 @@ onKeyRelease(controls.forward, () => {
 
 
 onKeyPress(controls.jump, () => {
+    if (!IS_CINEMATIC_MODE_ON) {
+        jump(player.flipX);
 
-jump(player.flipX);
-
-
+    }
 }
 
 

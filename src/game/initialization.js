@@ -21,7 +21,7 @@ const RUN_SPEED = 500
 const FRAME_SPEED = 20
 const JUMP_FORCE = 500
 const GRAVITY_AMOUNT = 640
-const FALL_DEATH = 1000
+const FALL_DEATH = 500
 const FALL_DEATH_SOUND = FALL_DEATH - 500
 const W_WALRUS_BULLET_SPEED = 900;
 const P_BULLET_SPEED = 800;
@@ -32,6 +32,8 @@ const W_WHITE_SHOT_FREQUENCY = 1.8;
 const S_HEALTH = 2;
 
 const DEFAULT_CINEMATIC_TIME = 7;
+const DEFAULT_CINEMATIC_TRIGGER_DISTANCE = 500;
+
 
 const ANIM_IDLE = "idle";
 const ANIM_WALK = "walk";
@@ -43,22 +45,24 @@ const ANIM_W_DIE = "w_die";
 const ANIM_S_FLY = "fly";
 const ANIM_SNOWBALL = "fly";
 const ANIM_BASIC_WEAPON_P = "shot";
-var IS_CINEMATIC_MODE_ON = false;
-var rightInnerSprite ;
-var centerInnerSprite;
-var centerInnerSpriteArray = [];
-var leftInnerSprite;
 
 
 // GLOBAL VARIABLES THAT WILL BE GET FROM LOCAL STORAGE
 var PLAYER_SHOT_FORCE = 1
 var P_HEALTH = MAX_HEALTH;
 var P_SHOT_FREQUENCY = 400;
+var PLAYER_NAME = "FROSTELL";
+
 
 // INITIALIZING GLOBAL VARIABLES
-
+var cinematicObjPoints = {}
 var lives = 3;
 var currentLevel = 0;
+var IS_CINEMATIC_MODE_ON = false;
+var rightInnerSprite ;
+var centerInnerSprite;
+var centerInnerSpriteArray = [];
+var leftInnerSprite;
 
 
 // States
