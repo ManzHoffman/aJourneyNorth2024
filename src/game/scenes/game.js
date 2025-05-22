@@ -1,66 +1,136 @@
 scene("game", (level) => {
 
 
+    addAuroras()
+    addSnow()
 // define gravity
 setGravity(GRAVITY_AMOUNT)
 P_HEALTH = MAX_HEALTH;
     
-switch (level) {
-    case 0:
-
-
-
-
-      var level = displayLevelZero(100, -600 );
-      
-
-
-
-    break;
-    case 1:
+add([
+    sprite("backgroundNight"),
+    fixed(),
     
+  ])
+  add([
+    sprite("mountains"),
+    fixed(),
+    
+  ])
+
+
+add([
+    sprite("stars"),
+  
+    fixed(),
+  ])
+
+  add([
+    sprite("fog"),
+      fixed(),
+    
+  ])
+
+
 
   
+  add([
+    rect(width(), 10),
+    pos(0, 510),
+    area(),
+    body({ isStatic: true }), // ← replaces `solid()`
+    color(255, 255, 255, 100), // invisible
+  ])
+  
+  add([
+    rect(10, height()),
+    pos(0, -510),
+    area(),
+    body({ isStatic: true }), // ← replaces `solid()`
+    color(255, 255, 255, 100), // invisible
+  ])
 
-    
-    var level = displayLevelOne(100, -600 );
-   
-    const player2 = level.get("player")[0]
-    //const enemy = level.get("walrusWhite")[0]
- 
-   // const enemies =  level.get("walrusWhite");
-    //const numberOfWalrusWhiteElements = enemies.length;
+  const player = initPlayer(10, 0);
+  
+//displayLives();
+//displayOuterBar();
+//displayBar(P_HEALTH,false);
+
+playDeerThoughts([
+    { text: "Il fait froid, mais ce n’est pas le froid d’avant.", duration: 4 },
+    { text: "Je marche. C’est tout ce que je sais faire.", duration: 4 },
+    { text: "Ce monde n’a plus d’odeur. Plus de cri.", duration: 4 },
+    { text: "Et pourtant… quelque chose m’appelle.", duration: 5 },
+    { text: "Le ciel… il a changé.", duration: 3 },
+    { text: "Je ne me souviens pas.", duration: 2 },
+    { text: "Mais quelque chose… se souvient de moi.", duration: 4 },
+    { text: "Je dois continuer à marcher.", duration: 4 },
+  ])
 
 
-    initPlayer(110,800,player2);
-/*
-    for (let i = 0; i < numberOfWalrusWhiteElements ; i++) {
-    
-      initWhiteWalrus(level.get("walrusWhite")[i],player,W_WHITE_SHOT_FREQUENCY)
-
+function playDeerThoughts(thoughts) {
+    let timeOffset = 0
+  
+    for (const t of thoughts) {
+      wait(timeOffset, () => {
+        showDeerThought(t.text, {
+          duration: t.duration || 4,
+          y: t.y || height() - 120,
+        })
+      })
+  
+      timeOffset += (t.duration || 4) + (t.delay || 1)
     }
+  }
 
+function showDeerThought(content, options = {}) {
+  const boxWidth = options.width || 600
+  const fontSize = options.size || 24
+  const yOffset = options.y || height() - 120
+  const duration = options.duration || 4
 
-      console.log("ENEMIES " + numberOfWalrusWhiteElements);
-*/
-  
-    
-    //player.play(ANIM_IDLE) 
+  // Box background
+  const box = add([
+    rect(boxWidth, 100, { radius: 8 }),
+    pos(width() / 2 - boxWidth / 2, yOffset),
+    color(0, 0, 0),
+    opacity(0),
+    z(110),
+    fixed(),
+    "fadeTarget"
+  ])
 
-    //const player = level.get("player")[0]
-    
-    
+  // Text
+  const textBox = add([
+    text(content, {
+      size: fontSize,
+      font: "ussr",
+      width: boxWidth - 40,
+    }),
+    pos(width() / 2 - boxWidth / 2 + 20, yOffset + 20),
+    color(255, 255, 255),
+    opacity(0),
+    z(111),
+    fixed(),
+    "fadeTarget"
+  ])
 
-        break;
+  // Fade in
+  tween(box.opacity, 0.5, duration * 0.25, (val) => box.opacity = val)
+  tween(textBox.opacity, 1, duration * 0.25, (val) => textBox.opacity = val)
 
-    default:
-        break;
+  // Wait then fade out
+  wait(duration * 0.75, () => {
+    tween(box.opacity, 0, duration * 0.25, (val) => box.opacity = val)
+    tween(textBox.opacity, 0, duration * 0.25, (val) => textBox.opacity = val)
+  })
+
+  // Destroy after total duration
+  wait(duration + 0.1, () => {
+    destroy(box)
+    destroy(textBox)
+  })
 }
-
-displayLives();
-displayOuterBar();
-displayBar(P_HEALTH,false);
-
 
 
 })

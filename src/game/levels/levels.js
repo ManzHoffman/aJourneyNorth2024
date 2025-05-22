@@ -7,7 +7,8 @@ text:"",
 }
 function displayLevelZero(posx,posy) {
     generateSeaAndSky();
-    generateFloe(0,10);
+   // generateFloe(0,10);
+   // generateFloe(6020,5);
     generateIcebergs();
 
     windAmbiance.paused = false;
@@ -17,15 +18,15 @@ function displayLevelZero(posx,posy) {
         "                                                                                                ",
         "                                                                                                ",
         "                                                                                                ",
-        "=                                                                                               ",
-        "=                                                                                               ",
-        "= @I              *          ^                                                                  ",
-        "=================%=========== ==== ",
+        "d                                                                                               ",
+        "        =    =                                                                                   ",
+        "@I              *          ^                                                                  ",
+        "=  =  =  =  =  =",
     ], {
         // define the size of tile block
         tileWidth: 180,
         tileHeight: 80,
-        pos: vec2(0, -50),
+        pos: vec2(0, 0),
         // define what each symbol means, by a function returning a component list (what will be passed to add())
         tiles: {
             "%": () => [
@@ -72,7 +73,7 @@ function displayLevelZero(posx,posy) {
                 friendIdle,
             ],
             "S": () => [
-              
+
                 sprite(seagullFly, {anim: ANIM_S_FLY}),
                 area({ shape: new Rect(vec2(0),20, 20 )}),
                 //body({ isStatic: tr ue }),
@@ -105,19 +106,20 @@ function displayLevelZero(posx,posy) {
                 state("idle", [ "idle", "attack","die"]),
                 "walrusWhite",
             ],
-            "=": () => [
-               // sprite("walrusIdle"),
-                  // Define custom behavior for the enemy
-                //pos(posx,posy),
-           
-                //anchor("center"), 
-                area({ shape: new Rect(vec2(0), 100, 105)}),
-                body({ isStatic: true }),
-                anchor("center"),
-                health(W_WHITE_HEALTH),
-                state("idle", [ "idle", "attack","die"]),
-                "invisibleBLock",
-            ],
+            "=": () => {
+                const randomScale = rand(0.3, 0.9); // Pick any range you like
+
+                const baseWidth = 500;
+                const baseHeight = 220;   
+
+                return [
+                    sprite(iceBlock),
+                    area({ shape: new Rect(vec2(0), baseWidth * randomScale, baseHeight * randomScale) }),
+                    anchor("center"),
+                    body({ isStatic: true }),
+                    scale(randomScale),
+                ];
+            },
             "$": () => [
           
                 sprite(iceBlock2),
@@ -149,7 +151,7 @@ function displayLevelZero(posx,posy) {
 
         cinematic0:[{
             objTrigger:level0.get(triggerIntro)[0],
-            speaker:level0.get("player")[0],
+            speaker: PLAYER_NAME,
             duration:5,
             text: PLAYER_SPEECH.intro,
             played:false,
@@ -176,11 +178,9 @@ function displayLevelZero(posx,posy) {
     initPlayer(110,800,level0.get("player")[0]);
     //friendCinematicLevelZero(level0.get("player")[0]);
 
-    spawnFriend(level0.get(friendIdle)[0]);
-
-
-
+   //spawnFriend(level0.get(friendIdle)[0]);
 }
+
 function displayLevelOne(posx,posy) {
       
 
@@ -203,7 +203,7 @@ function displayLevelOne(posx,posy) {
       ])*/
 
    
-
+ 
 return addLevel([
     "                                                                                                ",
     "                                                                                                ",
@@ -234,16 +234,17 @@ return addLevel([
             health(P_HEALTH),
             "player",
         ],
-        "=": () => [
-          
-            sprite(iceBlock),
-            area({ shape: new Rect(vec2(0), 135, 90 )}),
-            anchor("center"),
-            body({ isStatic: true }),
-            scale(0.5),
-           // fixed(),
-          
-        ],
+        "=": () => {
+            const randomScale = rand(0.1, 2); // Pick any range you like
+            console.log("JJJ : " + randomScale)
+            return [
+                sprite(iceBlock),
+                area({ shape: new Rect(vec2(0), 135, 90) }),
+                anchor("center"),
+                body({ isStatic: true }),
+                scale(randomScale),
+            ];
+        },
         "$": () => [
           
             sprite(iceBlock2),
@@ -277,7 +278,7 @@ return addLevel([
         "+": () => [
           
             sprite("life"),
-            area({ shape: new Rect(vec2(0),20, 20 )}),
+            area({ shape: new Rect(vec2(0),20, 20 )}),    
             anchor("center"),
 
             //body({ isStatic: tr ue }),

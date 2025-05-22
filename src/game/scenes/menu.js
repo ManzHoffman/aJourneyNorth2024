@@ -1,9 +1,9 @@
 // A Journey North - TITLE 
-
-
 // Create game menu scene
 scene("menu", () => {
      // minimal setup
+     addVHSEffects() // call the global function
+     addAuroras()
      add([
       sprite("background"),
     
@@ -25,13 +25,14 @@ scene("menu", () => {
     
       
     ])
+    /*
     add([
       sprite("ice"),
       fixed(),
       
     ])
- 
-
+ */
+/*
     add([
       sprite("borealis"),
         pos( vec2(-200, -110)),
@@ -43,15 +44,19 @@ scene("menu", () => {
       
     ])
 
+*/
+
+
+
 
     add([
       sprite("title"),
-      scale(1),
-      pos(width()/2-240,height()/2-400),
+      scale(0.5),
+      pos(width()/2-240,height()/2-600),
     ])
 
-
-    const reindeerAlone = add([
+/*
+    const  = add([
       sprite("playerIdle"),
       pos(300,800),
       scale(1),
@@ -60,11 +65,11 @@ scene("menu", () => {
       area(),
       "reindeer",
       
-    ])
+    ])*/
 
-    reindeerAlone.flipX = true;
-    reindeerAlone.play(ANIM_IDLE);
-    let backMusic = play("menuBackground", { loop: true, });
+    //reindeerAlone.flipX = true;
+    //reindeerAlone.play(ANIM_IDLE);
+    let backMusic = play("menuBackground", { loop: true,volume: 1 });
     // Add background
     /*
     add([
@@ -73,12 +78,63 @@ scene("menu", () => {
 
 
     ]);*/
+    function createMenuButton(label, y, onClick) {
+      const width = 400
+      const height = 80
+    
+      const box = add([
+        rect(width, height, { radius: 6 }),
+        pos(center().x - width / 2, y),
+        color(0, 0, 0),
+        opacity(0.45), // translucent black
+        area(),
+        z(10),
+        "menu-button"
+      ])
+    
+      const textLabel = add([
+        text(label, {
+          size: 36,
+          font: "ussr",
+        }),
+        anchor("center"),
+        pos(center().x, y + height / 2),
+        color(WHITE),
+        z(11),
+      ])
+    
+      box.onHover(() => {
+        box.opacity = 0.7
+        textLabel.color = rgb(180, 220, 255)
+        box.scale = vec2(1.02)
+        play("popMenu", { loop: false, volume: 0.1 })
+      })
+    
+      box.onHoverEnd(() => {
+        box.opacity = 0.45
+        textLabel.color = WHITE
+        box.scale = vec2(1)
+      })
+    
+      box.onClick(onClick)
+    }
+    
+    createMenuButton(menu.play, height() / 2 - 60, () => {
+      backMusic.stop("menuBackground")
+      go("intro", 1)
+    })
+    
+    createMenuButton(menu.options, height() / 2 + 60, () => {
+      alert("Options coming soon")
+    })
 
+    /*
+    
       const optionButton = add([
         text(menu.options,{
           size:78,
         
-          font: "arctic",
+          font: "ussr",
 
         }),
         anchor("center"),
@@ -92,7 +148,7 @@ scene("menu", () => {
         text(menu.play,{
           size:78,
         
-          font: "arctic",
+          font: "ussr",
 
         }),
         anchor("center"),
@@ -111,7 +167,7 @@ scene("menu", () => {
       playButton.onHover(() => { 
         
       changeColor(playButton,icyColorDarker) 
-      play("popMenu", { loop: false, });
+      play("popMenu", { loop: false, volume:0.1});
     
     } )
      playButton.onHoverEnd(() => {changeColor(playButton,icyWhite)  })
@@ -121,16 +177,13 @@ scene("menu", () => {
      optionButton.onHover(() => { 
       
       changeColor(optionButton,icyColorDarker) 
-      play("popMenu", { loop: false,volume: 0.4 });
+      play("popMenu", { loop: false,volume:0.1 });
     
     
     } )
      optionButton.onHoverEnd(() => {changeColor(optionButton,icyWhite)  })
+*/
 
-  
-
-});
-
-
+}) // END of scene("menu")
 
 go("menu")

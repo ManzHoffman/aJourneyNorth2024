@@ -1,86 +1,43 @@
 scene("intro", (level) => {
+  addVHSEffects(); // keep your glitchy aesthetic
+  setBackground(COLOR_BLACK);
 
-    switch (level) {
-        case 1:
+  const introMusic = play("menuBackground", { loop: true,volume: 1 });
 
-        var introMusic = play("firstIntro", { loop: true,volume: 1});
-        //introMusic.mu
-       
-              
-          add([
-            sprite("backgroundDay"),
-          
-            
-          ])
-          add([
-            sprite("clouds"),
-            pos( vec2(-200, -110)),
-            
-          ])
-          add([
-            sprite("mountainsDay"),
-          
-            
-          ])
- 
-          add([
-            sprite("map"),
-            scale(0.15),
-            anchor("center"),
-            pos( vec2(width()/2,height()/2+200)),
-            
-          ])
-          add([
-            sprite("pinPoint"),
-            scale(0.2),
-            pos( vec2(width()/2-80,height()/2+235)),
-          ])
+  // Terminal lines (mysterious, non-spoiler)
+  const lines = [
+    "[Initialisation . . .]",
+    "[Instance: 5220]",
+    "[69°42’N 147°12’E]",
+    "[Janvier 2022]",
+  ];
 
+  let lineIndex = 0;
 
-          addText(level1.title,68,icyWhite,"arctic","center",width()/2,height()/2-350)
-          addText(level1.localisation,48,icyWhite,"arctic","center",width()/2,height()/2-200)
-         
-          //addText(level1.description,30,icyWhite,"marykate","center",680,450)
+  // Helper to add one line at a time
+  function addTerminalLine(text) {
+    addText(text, 40, icyWhite, "ussr", "center", width() / 2, height() / 2 - 200 + lineIndex * 50);
+    lineIndex++;
+  }
 
-    
-            
-            break;
+  // Type lines with delay
+  function displayLinesSequentially() {
+    lines.forEach((line, i) => {
+      wait(i * 1.2, () => {
+        addTerminalLine(line);
+      });
+    });
 
-            case 2:
+    // After all lines are shown, wait a moment and show prompt
+    wait(lines.length * 1.2 + 1, () => {
+      addText("Appuyer sur ESPACE pour commencer", 36, icyWhite, "ussr", "center", width() / 2, height() / 2 + 180);
 
-              break;
-    
-        default:
-            break;
-    }
+      onKeyPress("space", () => {
+        introMusic.stop();
+        go("game", currentLevel);
+      });
+    });
+  }
 
-
-// 3 seconds until explosion! Runnn!
-wait(3, () => {
-  addText(level1.start,48,icyWhite,"arctic","center",width()/2,height()/2+400)
-
-  onKeyPress("space", () => {
-    introMusic.stop()
-    go("game",currentLevel)
-})
-
-
-})
-
-// wait() returns a PromiseLike that can be used with await
-/*
-  add([
-    sprite("map"),
-      pos( vec2(100, 200)),
-      resizeTo(10,10),
-      
-    
-  ])*/
-
-  
-//setBackground(icyBlack)
-
-
-
-
-})
+  displayLinesSequentially();
+});

@@ -26,7 +26,7 @@ function spawnSnowEnemyBall(p,player,enemy) {
   
     return snowball;
   }
-  
+  /*
   function spawnPlayerProjectile(p,player) {
 
     let flipXProj = false;
@@ -57,14 +57,11 @@ function spawnSnowEnemyBall(p,player,enemy) {
     projectile.play(ANIM_BASIC_WEAPON_P);
 
 
-/*
-    if (projectile.pos.) {
-    
-    }*/
+
     
   
   
   
     return projectile;
-  }
+  } */
   

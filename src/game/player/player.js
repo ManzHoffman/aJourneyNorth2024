@@ -1,31 +1,17 @@
-function initPlayer(posx,posy,player) {
+function initPlayer(posx,posy) {
 
-    /*
-  // add character to screen, from a list of components
+
+
 const player = add([
-    sprite("player"),  // renders as a sprite
-    pos(posx, posy),    // position in world
-    area(),          // has a collider
-    body(),          // responds to physics and gravity
-])
-*/
-// Loading a multi-frame sprite
-
-
-// Add our player character
-/*
-const player = add([
-	sprite("playerIdle"),
-	pos(posx,posy),
+    sprite("playerIdle"),
+    pos(posx, posy),
     scale(1),
-	anchor("center"),
+    //anchor("center"),
     body(),
-	area(),
- 
-    //scale(0.1),
-])*/
+    area(),
+  ])
 
-let walkNoise = play("reindeer_walking", { loop: true, volume:0.5, paused:true });
+let walkNoise = play("reindeer_walking", { loop: true, volume:0.05, paused:true });
 
 let falling = play("fall_sound", { loop: false, volume:0.5, paused:true, speed:1.5 });
 var firstProjectile = 0;
@@ -68,16 +54,20 @@ const jump =(flipPlayer) => {
 
 idle(true);
 
+const fixedCamY = 80
 
 	// action() runs every frame
 	player.onUpdate(() => {
         
-        camPos(player.worldPos())
+        camPos(vec2(player.pos.x, fixedCamY)) // fixedCamY = a low value like 400–500
+
 		// check fall death
+     /*
 		if (player.pos.y >= FALL_DEATH) {
 			go("lose")
 		}
-        /*
+
+   
         else if(player.pos.y >= FALL_DEATH_SOUND && !player.isGrounded() && falling.paused == true)
         {
             falling.paused = false
@@ -93,7 +83,7 @@ idle(true);
         }
 
 
-
+/*
         for (let key in cinematicObjPoints) {
             let cinematicArray = cinematicObjPoints[key];
             for (let i = 0; i < cinematicArray.length; i++) {
@@ -102,7 +92,7 @@ idle(true);
 
                 if (player.pos.dist(cinematicArray[i].objTrigger.pos) < DEFAULT_CINEMATIC_TRIGGER_DISTANCE && !cinematicArray[i].played) {
 
-                    launchCinematic(cinematicArray[i]);
+                   
                     cinematicArray[i].played = true;
                     idle(true);
 
@@ -112,7 +102,7 @@ idle(true);
                 // Do something with obj and duration
                // console.log(`Object: ${obj}, Duration: ${duration}`);
             }
-        }
+        }*/
 
 
     
@@ -193,7 +183,7 @@ function shoot() {
 onMousePress("left", async (pos) => {
     if (!IS_CINEMATIC_MODE_ON) {
 
-    shoot()
+    //shoot()
     }
    // const projectile = spawnPlayerProjectile(player.pos,player)   
     //spawnBullet(player.pos,player, enemy, true);
@@ -292,7 +282,11 @@ onKeyPress(controls.jump, () => {
 
 
 
-)}
+)
+
+return player;
+
+}
 
 
 

@@ -1,4 +1,4 @@
-kaboom({
+kaplay({
     width: 1800,
     height: 1024,
     //font: "sans-serif",
@@ -12,6 +12,9 @@ const icyColor = color(121,202,234)
 const icyColorDarker = color(12,22,96)
 const icyWhite = Color.fromHex("#ffffff")
 const icyBlack = Color.fromHex("#000000")
+const COLOR_BLACK = '#000000';
+
+
 
 const MAX_HEALTH = 10;
 const MIN_HEALTH = 0;
@@ -52,6 +55,8 @@ var PLAYER_SHOT_FORCE = 1
 var P_HEALTH = MAX_HEALTH;
 var P_SHOT_FREQUENCY = 400;
 var PLAYER_NAME = "FROSTELL";
+var MUSIC_VOLUME = 0.2;
+
 
 
 // INITIALIZING GLOBAL VARIABLES

@@ -31,7 +31,7 @@ function displayLives() {
 
    add([
         text("Vies : ",{
-          font: "arctic",
+          font: "ussr",
 
           
         }),

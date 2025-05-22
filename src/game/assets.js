@@ -16,7 +16,7 @@ const SOUNDS = {
 loadGameElements(SOUNDS,"sound")
 let soundKeys = Object.keys(SOUNDS);
 
-let windAmbiance = play(soundKeys[4], { loop: true, paused: true});
+let windAmbiance = play(soundKeys[4], { loop: true, paused: true, volume: MUSIC_VOLUME});
 
 
 
@@ -24,7 +24,8 @@ let windAmbiance = play(soundKeys[4], { loop: true, paused: true});
 const FONTS = {
 	arctic: "./src/game/assets/fonts/snowy.ttf",
 	travel: "./src/game/assets/fonts/travel.ttf",
-	marykate: "./src/game/assets/fonts/marykate.ttf"
+	marykate: "./src/game/assets/fonts/marykate.ttf",
+	ussr: "./src/game/assets/fonts/Orbitron.ttf"
 
 }
 let fontKeys = Object.keys(FONTS);
@@ -62,11 +63,13 @@ const SPRITES =
 	iceBerg3: "./src/game/assets/elements/landscape/arctic/iceberg_04.png",
 	iceBerg4: "./src/game/assets/elements/landscape/arctic/iceberg_05.png",
 	iceBerg5: "./src/game/assets/elements/landscape/arctic/iceberg_06.png",
-	title:"./src/game/assets/elements/title/gameTitle.png",
+	title:"./src/game/assets/elements/title/gameTitleNew.png",
 	plant:"./src/game/assets/elements/landscape/blocks/herb.png",
 	triggerIntro:"",
 	background: "./src/game/assets/elements/landscape/01/layers/l1-background.png",
 	backgroundDay: "./src/game/assets/elements/landscape/04/layers/l1-backgrounds.png",
+	backgroundNight: "./src/game/assets/elements/landscape/01/layers/l1-background.png",
+	fog: "./src/game/assets/elements/landscape/01/layers/l3-fog.png",
 	clouds: "./src/game/assets/elements/landscape/04/layers/l2-clouds01.png",
 	borealisPurple: "./src/game/assets/elements/landscape/01/layers/l5-northern-lights02.png",
 	borealis: "./src/game/assets/elements/landscape/01/layers/l2-northern-lights01.png",
