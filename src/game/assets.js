@@ -1,15 +1,16 @@
 // IMPORTING GAME ASSETS
 // SOUNDS
 const SOUNDS = {
-	menuBackground: "./src/game/assets/sounds/background_menu.wav",
+	menu: "./src/game/assets/sounds/menu.wav",
 	popMenu: "./src/game/assets/sounds/pop_menu.wav",
 	firstIntro: "./src/game/assets/sounds/intro_first.wav",
 	reindeer_walking: "./src/game/assets/sounds/reindeer_walking_short.mp3",
-	windAmb: "./src/game/assets/sounds/level1_music.wav",
+	windAmb: "./src/game/assets/sounds/wind.wav",
 	eat: "./src/game/assets/sounds/eat.wav",
 	dropping_snowball: "./src/game/assets/sounds/dropping_snowball.wav",
 	hit_by_snowball: "./src/game/assets/sounds/hit_by_snowball.wav",
-	fall_sound: "./src/game/assets/sounds/falling.wav"
+	typing: "./src/game/assets/sounds/typing.wav",
+	fragment_get: "./src/game/assets/sounds/fragment.wav"
 }
 
 // LOAD SOUNDS
@@ -51,13 +52,12 @@ const SPRITES =
 	sky:"./src/game/assets/elements/landscape/arctic/sky_colour_strip.png",
 	icelongLeft:"./src/game/assets/elements/landscape/arctic/platform_edge_left_jagged.png",
 	icelongMiddle:"./src/game/assets/elements/landscape/arctic/platform_short_repeating.png",
-	icelongRight:"./src/game/assets/elements/landscape/arctic/platform_edge_right_jagged.png",
-	iceBlock:"./src/game/assets/elements/landscape/arctic/block1.png",
+	ground:"./src/game/assets/elements/landscape/ground.png",
+	iceBlock:"./src/game/assets/elements/landscape/blocks/iceBlock1.png",
 	iceBlock2:"./src/game/assets/elements/landscape/arctic/block2.png",
 	sign:"./src/game/assets/elements/obj/sign.png",
 	platformHole:"./src/game/assets/elements/landscape/arctic/platform_hole.png",
 	platformBigHole:"./src/game/assets/elements/landscape/arctic/platform_crack.png",
-	convBox:"./src/game/assets/elements/conv/rect-tag-above.png",
 	iceBerg1: "./src/game/assets/elements/landscape/arctic/iceberg_02.png",
 	iceBerg2: "./src/game/assets/elements/landscape/arctic/iceberg_03.png",
 	iceBerg3: "./src/game/assets/elements/landscape/arctic/iceberg_04.png",
@@ -82,7 +82,13 @@ const SPRITES =
 	starLocked: "./src/game/assets/elements/obj/star_lock.png",
 	pinPoint: "./src/game/assets/elements/obj/pinpoint.png",
 	map: "./src/game/assets/elements/obj/map.png",
-	life: "./src/game/assets/elements/obj/health_potion.png"
+	life: "./src/game/assets/elements/obj/health_potion.png",
+	fragment: "./src/game/assets/elements/obj/orb.png",
+	seagull: "./src/game/assets/elements/npc/seagull/seagull.png",
+	rock1:"./src/game/assets/elements/rocks/rock_10.png",
+	rock2:"./src/game/assets/elements/rocks/rock_14.png",
+	rock3:"./src/game/assets/elements/rocks/rock_03.png",
+	rock4:"./src/game/assets/elements/rocks/rock_15.png",
 }
 
 
@@ -97,12 +103,15 @@ const ANIMATED_SPRITES =
 	playerWalk:[{name: "playerWalk", src:"./src/game/assets/elements/player/basicReindeer/reindeer_walking.png",sliceX:5,sliceY:3,anim: ANIM_WALK,from:0,to:14,speed:FRAME_SPEED,loop:true}],
 	playerJump:[{name: "playerJump", src:"./src/game/assets/elements/player/basicReindeer/reindeer_jump.png",sliceX:5,sliceY:3,anim: ANIM_JUMP,from:0,to:14,speed:FRAME_SPEED,loop:false}],
 	playerDie:[{name: "playerDie", src:"./src/game/assets/elements/player/basicReindeer/reindeer_die.png",sliceX:5,sliceY:2,anim: ANIM_DIE,from:0,to:9,speed:FRAME_SPEED,loop:false}],
+	playerLaying:[{name: "playerLaying", src:"./src/game/assets/elements/player/basicReindeer/reindeer_laying.png",sliceX:5,sliceY:4,anim: ANIM_CHILL,from:0,to:19,speed:FRAME_SLOW_SPEED,loop:true}],
+	orb:[{name: "orb", src:"./src/game/assets/elements/obj/orb_anim.png",sliceX:4,sliceY:4,anim: ANIM_ORB,from:0,to:15,speed:FRAME_SLOW_SPEED,loop:true}],
+
 	//playerEat:[{name: "playerDie", src:"./src/game/assets/elements/player/basicReindeer/reindeer_eat.png",sliceX:5,sliceY:2,anim: ANIM_EAT,from:0,to:9,speed:FRAME_SPEED,loop:false}],
 	walrusIdle:[{name: "walrusIdle", src:"./src/game/assets/elements/enemy/walrus/walrusWhite/walrus_idle.png",sliceX:5,sliceY:4,anim: ANIM_W_IDLE,from:0,to:19,speed:3,loop:true}],
 	walrusAttack:[{name: "walrusAttack", src:"./src/game/assets/elements/enemy/walrus/walrusWhite/walrus_idle.png",sliceX:4,sliceY:2,anim: ANIM_W_ATTACK,from:0,to:7,speed:3,loop:false}],
 	walrusDie:[{name: "walrusDie", src:"./src/game/assets/elements/enemy/walrus/walrusWhite/walrus_die.png",sliceX:5,sliceY:3,anim: ANIM_W_DIE,from:0,to:7,speed:3,loop:false}],
 	basic_weapon_player:[{name: "basic_weapon_player", src:"./src/game/assets/elements/projectile/basic_weapon_player.png",sliceX:3,sliceY:2,anim: ANIM_BASIC_WEAPON_P,from:0,to:5,speed:3,loop:true}],
-	seagullFly:[{name: "seagullFly", src:"./src/game/assets/elements/enemy/seagull/seagull_fly.png",sliceX:4,sliceY:3,anim: ANIM_S_FLY,from:0,to:9,speed:5,loop:true}],
+	seagullFly:[{name: "seagullFly", src:"./src/game/assets/elements/npc/seagull/seagull_fly.png",sliceX:4,sliceY:3,anim: ANIM_S_FLY,from:0,to:9,speed:5,loop:true}],
 	friendIdle:[{name: "friendIdle", src:"./src/game/assets/elements/npc/friend/friend_idle.png",sliceX:5,sliceY:4,anim: ANIM_IDLE,from:0,to:19,speed:FRAME_SPEED,loop:true}],
 
 }

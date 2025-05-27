@@ -3,17 +3,20 @@ function initPlayer(posx,posy) {
 
 
 const player = add([
-    sprite("playerIdle"),
+    sprite("playerLaying"),
     pos(posx, posy),
     scale(1),
     //anchor("center"),
     body(),
-    area(),
+    area({ shape: new Rect(vec2(0), 100, 100) }), // custom collision box
+    anchor("center"),
+
+
   ])
 
 let walkNoise = play("reindeer_walking", { loop: true, volume:0.05, paused:true });
 
-let falling = play("fall_sound", { loop: false, volume:0.5, paused:true, speed:1.5 });
+//let falling = play("fall_sound", { loop: false, volume:0.5, paused:true, speed:1.5 });
 var firstProjectile = 0;
 
 const walk =(flipPlayer) => {
@@ -26,7 +29,12 @@ const walk =(flipPlayer) => {
 
     }
 }
+const lay =(flipPlayer) => {
 
+    player.use(sprite("playerLaying"))  
+    player.play(ANIM_CHILL)  
+    player.flipX = flipPlayer 
+}
 const idle =(flipPlayer) => {
 
     player.use(sprite("playerIdle"))  
@@ -52,7 +60,8 @@ const jump =(flipPlayer) => {
 	}
 }
 
-idle(true);
+
+lay(true);
 
 const fixedCamY = 80
 
@@ -62,11 +71,11 @@ const fixedCamY = 80
         camPos(vec2(player.pos.x, fixedCamY)) // fixedCamY = a low value like 400–500
 
 		// check fall death
-     /*
+   
 		if (player.pos.y >= FALL_DEATH) {
 			go("lose")
 		}
-
+  /*
    
         else if(player.pos.y >= FALL_DEATH_SOUND && !player.isGrounded() && falling.paused == true)
         {
@@ -114,6 +123,8 @@ const fixedCamY = 80
 
     player.onGround(() => {
 
+        if (IS_CINEMATIC_MODE_ON) return;
+
         if (isKeyDown(controls.backward) && !isKeyDown(controls.forward))  
         {
             walk(false)
@@ -149,6 +160,19 @@ const fixedCamY = 80
 
         destroy(snEnemy);
     })
+    player.onCollide("codeTrigger", (t) => {
+        if (!t.activated) {
+          t.activated = true // prevent repeat activation
+      
+          showCodePromptModal("Un mot… un code scellé.\nEntrez-le pour avancer.", () => {
+            // ✅ Success!
+            destroy(t)
+            showMemoryModal("🔓 Le chemin s’ouvre devant vous.")
+            // You could also play an animation, open a door, or go to the next level
+          })
+        }
+      })
+      
 
     player.on("death", () => {
 		destroy(player)
@@ -194,7 +218,9 @@ onMousePress("left", async (pos) => {
 
 onKeyPress(controls.forward, () => {
 
-    if (!IS_CINEMATIC_MODE_ON && !isKeyDown(controls.backward)) {
+    if (IS_CINEMATIC_MODE_ON) return;
+
+    if (!isKeyDown(controls.backward)) {
         
     walk(true)
     }
@@ -208,7 +234,9 @@ onKeyPress(controls.forward, () => {
 
 onKeyPress(controls.backward, () => {
 
-    if (!IS_CINEMATIC_MODE_ON && !isKeyDown(controls.forward)) {
+    if (IS_CINEMATIC_MODE_ON) return;
+
+    if (!isKeyDown(controls.forward)) {
 
         walk(false)
     }
@@ -218,8 +246,9 @@ onKeyPress(controls.backward, () => {
 })
 onKeyDown(controls.forward, () => {
 
-    
-    if (!IS_CINEMATIC_MODE_ON && !isKeyDown(controls.backward)) {  
+    if (IS_CINEMATIC_MODE_ON) return;
+
+    if (!isKeyDown(controls.backward)) {  
     player.move(SPEED, 0)
 
     }
@@ -233,7 +262,9 @@ onKeyDown(controls.forward, () => {
 
 onKeyDown(controls.backward, () => {
 
-    if (!IS_CINEMATIC_MODE_ON && !isKeyDown(controls.forward)) {
+    if (IS_CINEMATIC_MODE_ON) return;
+
+    if (!isKeyDown(controls.forward)) {
 
     player.move(-SPEED, 0)
     
@@ -250,6 +281,7 @@ onKeyDown(controls.backward, () => {
 onKeyRelease(controls.backward, () => {
     
 
+if (IS_CINEMATIC_MODE_ON) return;
 
 if (!isKeyDown(controls.forward)) {
      idle(false)
@@ -261,6 +293,7 @@ if (!isKeyDown(controls.forward)) {
 })
 onKeyRelease(controls.forward, () => {
     
+    if (IS_CINEMATIC_MODE_ON) return;
 
     if (!isKeyDown(controls.backward)) {
           idle(true)
@@ -273,10 +306,13 @@ onKeyRelease(controls.forward, () => {
 
 
 onKeyPress(controls.jump, () => {
-    if (!IS_CINEMATIC_MODE_ON) {
+
+    if (IS_CINEMATIC_MODE_ON) return;
+
+
         jump(player.flipX);
 
-    }
+    
 }
 
 

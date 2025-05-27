@@ -23,14 +23,16 @@ scene("lose", () => {
         
       ])
 
+
+    
       add([
         sprite("title"),
-        scale(1),
-        pos(width()/2-240,height()/2-400),
+        scale(0.5),
+        pos(width()/2-240,height()/2-600),
       ])
-  
-      addText(loose.dead,80,icyWhite,"arctic","center",width()/2,height()/2)
 
+      
+    
       const reindeerDie= add([
         sprite("playerDie"),
         pos(width()/2,height()/2+250),
@@ -56,7 +58,7 @@ lives--
 
 // 3 seconds until explosion! Runnn!
 wait(1, () => {
-    addText(loose.title,48,icyWhite,"arctic","center",width()/2,height()/2+400)
+    addText(loose.title,48,icyWhite,"ussr","center",width()/2,height()/2+400)
   
     onKeyPress("space", () => {
 

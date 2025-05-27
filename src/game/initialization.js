@@ -7,6 +7,7 @@ kaplay({
 })
 
 // INITIALIZING CONST GLOBAL VARIABLES
+const LEVEL_TESTING = true;
 
 const icyColor = color(121,202,234)
 const icyColorDarker = color(12,22,96)
@@ -22,6 +23,7 @@ const SPEED = 320
 const SPEED_JUMP = 1000
 const RUN_SPEED = 500
 const FRAME_SPEED = 20
+const FRAME_SLOW_SPEED = 5
 const JUMP_FORCE = 500
 const GRAVITY_AMOUNT = 640
 const FALL_DEATH = 500
@@ -42,6 +44,8 @@ const ANIM_IDLE = "idle";
 const ANIM_WALK = "walk";
 const ANIM_JUMP = "jump";
 const ANIM_DIE = "die";
+const ANIM_CHILL= "chill";
+const ANIM_ORB= "orbanim";
 const ANIM_W_IDLE = "w_idle";
 const ANIM_W_ATTACK = "w_attack";
 const ANIM_W_DIE = "w_die";
@@ -64,6 +68,8 @@ var cinematicObjPoints = {}
 var lives = 3;
 var currentLevel = 0;
 var IS_CINEMATIC_MODE_ON = false;
+var IS_TYPING_CODE = false;
+
 var rightInnerSprite ;
 var centerInnerSprite;
 var centerInnerSpriteArray = [];

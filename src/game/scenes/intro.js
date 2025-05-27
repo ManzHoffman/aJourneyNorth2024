@@ -2,7 +2,7 @@ scene("intro", (level) => {
   addVHSEffects(); // keep your glitchy aesthetic
   setBackground(COLOR_BLACK);
 
-  const introMusic = play("menuBackground", { loop: true,volume: 1 });
+ const introMusic = play("typing", { loop: false,volume:0.6 });
 
   // Terminal lines (mysterious, non-spoiler)
   const lines = [

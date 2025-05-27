@@ -27,7 +27,7 @@ intro: "Bienvenue dans les terres glacées de l'Arctique !\nJ'ai besoin de ton a
 };
 
 const CONTROLS = {
-leftAndRight: "Utilise A et D pour te déplacer à gauche et à droite",
+leftAndRight: "Utilise A et D pour te déplacer à gauche et à droite\n\nAppuie sur ESPACE pour sauter",
 jump: "Utilise la barre espace pour sauter",
 
 };

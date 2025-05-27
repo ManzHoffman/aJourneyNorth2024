@@ -1,6 +1,16 @@
 // A Journey North - TITLE 
 // Create game menu scene
 scene("menu", () => {
+
+  if (LEVEL_TESTING)
+  {
+   go("game")
+    return
+
+
+  }
+ 
+  
      // minimal setup
      addVHSEffects() // call the global function
      addAuroras()
@@ -69,7 +79,7 @@ scene("menu", () => {
 
     //reindeerAlone.flipX = true;
     //reindeerAlone.play(ANIM_IDLE);
-    let backMusic = play("menuBackground", { loop: true,volume: 1 });
+    let backMusic = play("menu", { loop: true,volume: 0.5 });
     // Add background
     /*
     add([
@@ -128,61 +138,6 @@ scene("menu", () => {
       alert("Options coming soon")
     })
 
-    /*
-    
-      const optionButton = add([
-        text(menu.options,{
-          size:78,
-        
-          font: "ussr",
-
-        }),
-        anchor("center"),
-        pos(width()/2,height()/2+50),
-        { value: 0 },
-        area(),
-      ])
-
-
-     const playButton = add([
-        text(menu.play,{
-          size:78,
-        
-          font: "ussr",
-
-        }),
-        anchor("center"),
-        pos(width()/2,height()/2-50),
-        { value: 0 },
-        area(),
-
-      ])
-
-      playButton.onClick(() => {
-
-        backMusic.stop("menuBackground")
-        go("intro",1)
-
-        })
-      playButton.onHover(() => { 
-        
-      changeColor(playButton,icyColorDarker) 
-      play("popMenu", { loop: false, volume:0.1});
-    
-    } )
-     playButton.onHoverEnd(() => {changeColor(playButton,icyWhite)  })
-
-
-     optionButton.onClick(() => {alert("")})
-     optionButton.onHover(() => { 
-      
-      changeColor(optionButton,icyColorDarker) 
-      play("popMenu", { loop: false,volume:0.1 });
-    
-    
-    } )
-     optionButton.onHoverEnd(() => {changeColor(optionButton,icyWhite)  })
-*/
 
 }) // END of scene("menu")
 
